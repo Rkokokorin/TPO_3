@@ -42,7 +42,6 @@ public class FilterTest {
         driver.findElement(By.xpath("//*[contains(@class,'IndexMarks__item-name') and contains(text(),'MINI')]")).click();
         List<WebElement> foundcars = new LinkedList<>();
         JavascriptExecutor jse = (JavascriptExecutor)driver;
-        jse.executeScript("window.scrollBy(0,750)", "");
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated
                 (By.xpath("/html/body/div[2]/div[2]/div[3]/div[2]/div/div[2]/div/div[9]/div[2]")));
         foundcars = driver.findElements(By.xpath("//h3/a[@class='Link ListingItemTitle-module__link']"));
@@ -245,9 +244,7 @@ public class FilterTest {
         new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) driver -> !driver.findElement
                 (By.xpath("/html/body/div[2]/div[2]/div[3]/div[2]/div/div[2]/div/div[3]/div[3]/div[3]/button/span/span")).
                 getText().contains("Показать"));
-        new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) driver -> driver.findElement
-                (By.xpath("/html/body/div[2]/div[2]/div[3]/div[2]/div/div[2]/div/div[3]/div[3]/div[3]/button/span/span")).
-                getText().contains("Показать"));
+
 
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated
                 (By.xpath("//*[@class= 'ListingItem-module__year']")));

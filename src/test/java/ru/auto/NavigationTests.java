@@ -14,6 +14,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -124,9 +125,26 @@ public class NavigationTests {
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated
                 (By.xpath("/html/body/div[2]/div/header/div/div[2]/div[1]/div[2]/div/div[1]/div[3]/a")));
         driver.findElement(By.xpath("/html/body/div[2]/div/header/div/div[2]/div[1]/div[1]")).click();
-        List<WebElement> list  = driver.findElements(By.xpath("/html/body/div[2]/div/div[3]/div[2]/div[1]/div[1]/div[1]/div[2]"));
+        List<WebElement> list = driver.findElements(By.xpath("/html/body/div[2]/div/div[3]/div[2]/div[1]/div[1]/div[1]/div[2]"));
         driver.navigate().back();
         assertEquals(1, list.size());
+    }
+    @Test
+    void emailLogInTest() {
+        WebElement element = driver.findElement(By.xpath("//*[text()='Войти']"));
+        List<String> windows = new LinkedList<String>();
+        String firstWindow = driver.getWindowHandle();
+        System.out.println(firstWindow);
+        element.click();
+        new WebDriverWait(driver, 4).until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//*[@class='SocialIcon SocialIcon_mailru']"))).click();
+        windows.addAll(driver.getWindowHandles());
+        windows.remove(firstWindow);
+        driver.switchTo().window(windows.get(0));
+        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//*[@class='login-form__2col']//input"))).sendKeys("tpo.labs@mail.ru");
+        driver.findElement(By.xpath("//*[@class='login-form__password']")).sendKeys("fdharen3");
+        driver.findElement(By.xpath("//*[@class='ui-button-main']")).click();
 
     }
 }
