@@ -231,7 +231,7 @@ public class FilterTest {
     }
     @Test
     void modelTest(){
-        driver.get("https://auto.ru/cars/zil/all/");
+        driver.get("https://auto.ru/sankt-peterburg/cars/luaz/all/");
 
         List<WebElement> foundcars = new LinkedList<>();
 
@@ -239,21 +239,21 @@ public class FilterTest {
                 (By.xpath("/html/body/div[2]/div[2]/div[3]/div[2]/div/div[2]/div/div[3]/div[2]/div[1]/div/div/div/div/div[2]/div/button")))
                 .click();
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//*[@class= 'MenuItem MenuItem_size_m' and  contains(text(), '4104')]"))).click();
+                (By.xpath("//*[@class= 'MenuItem MenuItem_size_m' and  contains(text(), '967')]"))).click();
         driver.findElement(By.xpath("/html/body/div[2]/div[2]/div[3]/div[2]/div/div[2]/div/div[3]/div[3]/div[3]/button")).click();
         new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) driver -> !driver.findElement
                 (By.xpath("/html/body/div[2]/div[2]/div[3]/div[2]/div/div[2]/div/div[3]/div[3]/div[3]/button/span/span")).
                 getText().contains("Показать"));
-
-
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//*[@class= 'ListingItem-module__year']")));
-        foundcars = driver.findElements(By.xpath("//*[@class= 'ListingItemTechSummaryDesktop__cell']"));
-
+        new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) driver -> driver.findElement
+                (By.xpath("/html/body/div[2]/div[2]/div[3]/div[2]/div/div[2]/div/div[3]/div[3]/div[3]/button/span/span")).
+                getText().contains("Показать"));
         boolean a = true;
-        for (WebElement b : foundcars) {
-            if ((((b.getText())).equals("114"))||(((b.getText())).equals(""))||(((b.getText())).equals("111"))||(((b.getText())).equals("117")))
-                a = false;
+            foundcars = driver.findElements(By.xpath("//h3/a[@class='Link ListingItemTitle-module__link']"));
+            for (WebElement b : foundcars) {
+                System.out.println(b.getText());
+                if ((((b.getText())).equals("969"))||(((b.getText())).equals("1302 Волынь")))
+                    a = false;
+
         }
         assertTrue(a);
     }
