@@ -50,6 +50,7 @@ public class SignInTests {
     }
     @Test
     public void addToFavoriteTest() {
+        driver.get("https://auto.ru");
         List<WebElement> foundCars = new LinkedList<>();
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated
                 (By.xpath("//*[@class='IndexMarks__item-name']")));
@@ -74,6 +75,7 @@ public class SignInTests {
     }
     @Test
     public void addToCompareListTest() {
+        driver.get("https://auto.ru");
         List<WebElement> foundCars = new LinkedList<>();
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated
                 (By.xpath("//*[@class='IndexMarks__item-name']")));
@@ -81,22 +83,36 @@ public class SignInTests {
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated
                 (By.xpath(("//*[@class='ListingItemTitle-module__clicker']"))));
         foundCars = driver.findElements(By.xpath("//*[@class='Link ListingItemTitle-module__link']"));
+        String a = foundCars.get(0).getText();
         actions.moveToElement(foundCars.get(0)).perform();
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated
                 (By.xpath(("//*[@class='IconSvg IconSvg_compare-small IconSvg_size_24 ButtonCompare-module__icon']")))).click();
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated
                 (By.xpath(("//*[@class='Link ButtonCompare-module__link']")))).click();
         String s= "//*[@class='Link ComparableOfferHeadCell__title']";
-//        String a = foundCars.get(6).getText();
         boolean flag =false;
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath((s))));
         foundCars = driver.findElements(By.xpath(s));
-//        for (WebElement o : foundCars){
-//            if (a.contains(o.getText())) flag = true;
-////            assertTrue(flag);
-//    }
-            }
+        for (WebElement o : foundCars){
+                 if (a.contains(o.getText().substring(0,o.getText().length()-6)))
+                flag = true;
+        }
+        assertTrue(flag);
+
     }
+    @Test
+    public void saveSearchTest() {
+        driver.get("https://auto.ru");
+        List<WebElement> foundCars = new LinkedList<>();
+        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//*[@class='IndexMarks__item-name']")));
+        driver.findElement(By.xpath("//*[contains(@class,'IndexMarks__item-name') and contains(text(),'MINI')]")).click();
+        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath(("//*[@class='SubscriptionSaveButton']")))).click();
+        assertTrue((new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath(("//*[@class='Notifier__text']")))).getText()).contains("сохранён"));
+    }
+}
 
 
 
