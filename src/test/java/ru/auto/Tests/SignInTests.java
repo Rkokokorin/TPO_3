@@ -1,4 +1,4 @@
-package ru.auto;
+package ru.auto.Tests;
 
 import net.bytebuddy.jar.asm.Handle;
 import org.junit.jupiter.api.AfterAll;
@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -21,7 +22,7 @@ public class SignInTests {
     private static Actions actions;
     @BeforeAll
     static void up() {
-
+        System.setProperty("webdriver.gecko.driver", "C:\\Users\\Peppe\\Downloads\\geckodriver.exe");
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Peppe\\Downloads\\chromedriver.exe");
         driver = new ChromeDriver();
         actions = new Actions(driver);
