@@ -3,12 +3,10 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
-import ru.auto.Main.CarFilter;
-import ru.auto.Main.CarList;
-import ru.auto.Main.SignInPage;
-import ru.auto.Main.SiteNavigation;
+import ru.auto.Main.*;
 
 import java.util.*;
 
@@ -24,9 +22,7 @@ public class  SignInTests {
     private static CarList carList;
     @BeforeAll
     static void up() {
-        System.setProperty("webdriver.gecko.driver", "C:\\Users\\Peppe\\Downloads\\geckodriver.exe");
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Peppe\\Downloads\\chromedriver.exe");
-        driver = new FirefoxDriver();
+        driver=TestConfiguration.initialize();
         actions = new Actions(driver);
         siteNavigation =new SiteNavigation(driver);
         carFilter = new CarFilter(driver);
@@ -39,7 +35,7 @@ public class  SignInTests {
 
     @AfterAll
     static void close() {
-        driver.quit();
+        driver=TestConfiguration.initialize();
 
     }
     @Test

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeOptions;
 import ru.auto.Main.CarList;
+import ru.auto.Main.TestConfiguration;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -15,11 +16,7 @@ public class CarFilterTest {
     public static CarFilter carFilter;
     @BeforeAll
     static void up() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Peppe\\Downloads\\chromedriver.exe");
-        System.setProperty("webdriver.gecko.driver", "C:\\Users\\Peppe\\Downloads\\geckodriver.exe");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized");
-        driver = new FirefoxDriver();
+        driver= TestConfiguration.initialize();;
         carFilter = new CarFilter(driver);
         carList =new CarList(driver);
     }

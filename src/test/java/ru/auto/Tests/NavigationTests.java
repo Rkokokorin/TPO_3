@@ -12,6 +12,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import ru.auto.Main.TestConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +26,7 @@ public class NavigationTests {
     static SiteNavigation siteNavigation;
     @BeforeAll
     public static void up() {
-        System.setProperty("webdriver.gecko.driver", "C:\\Users\\Peppe\\Downloads\\geckodriver.exe");
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Peppe\\Downloads\\chromedriver.exe");
-        driver = new FirefoxDriver();
-
+        driver= TestConfiguration.initialize();
         siteNavigation =new SiteNavigation(driver);
         signInPage = new SignInPage(driver);
         driver.manage().window().setSize(new Dimension(1920, 1080));

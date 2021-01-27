@@ -11,6 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.auto.Main.CarPage;
+import ru.auto.Main.TestConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +22,7 @@ public class CarTests {
     public static CarPage carPage;
     @BeforeAll
     static void up() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Peppe\\Downloads\\chromedriver.exe");
-        System.setProperty("webdriver.gecko.driver", "C:\\Users\\Peppe\\Downloads\\geckodriver.exe");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized");
+        driver= TestConfiguration.initialize();
         driver = new FirefoxDriver();
         carPage = new CarPage(driver);
     }
