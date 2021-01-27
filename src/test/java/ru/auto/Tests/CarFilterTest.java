@@ -16,7 +16,7 @@ public class CarFilterTest {
     public static CarFilter carFilter;
     @BeforeAll
     static void up() {
-        driver= TestConfiguration.initialize();;
+        driver= TestConfiguration.initialize();
         carFilter = new CarFilter(driver);
         carList =new CarList(driver);
     }

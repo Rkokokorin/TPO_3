@@ -35,7 +35,7 @@ public class  SignInTests {
 
     @AfterAll
     static void close() {
-        driver=TestConfiguration.initialize();
+        driver.quit();
 
     }
     @Test

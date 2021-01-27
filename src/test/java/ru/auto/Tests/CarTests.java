@@ -23,7 +23,6 @@ public class CarTests {
     @BeforeAll
     static void up() {
         driver= TestConfiguration.initialize();
-        driver = new FirefoxDriver();
         carPage = new CarPage(driver);
     }
     @AfterAll
