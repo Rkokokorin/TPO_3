@@ -1,4 +1,4 @@
-package Main;
+package ru.auto.Main;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,9 +8,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.LinkedList;
 import java.util.List;
 
-public class SignUpPage {
+public class SignInPage {
     WebDriver driver;
-    public SignUpPage(WebDriver driver) {
+    public SignInPage(WebDriver driver) {
         this.driver = driver;
     }
     public void enterEmail() {
@@ -31,10 +31,10 @@ public class SignUpPage {
         driver.switchTo().window(windows.get(0));
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated
                 (By.xpath("//*[@class='login-form__2col']//input"))).sendKeys("tpo.labs@mail.ru");
-        driver.findElement(By.xpath("//*[@class='login-form__password']")).sendKeys("fdharen3");
-        driver.findElement(By.xpath("//*[@class='ui-button-main']")).click();
+        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath
+                ("//*[@type='password']"))).sendKeys("fdharen3");
+        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//*[@class='ui-button-main']")))).click();
         driver.switchTo().window(firstWindow);
-
     }
 
 }

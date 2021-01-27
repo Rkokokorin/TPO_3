@@ -1,4 +1,4 @@
-package Main;
+package ru.auto.Main;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -107,16 +107,24 @@ public class CarFilter {
                 .click();
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated
                 (By.xpath("//*[@class= 'MenuItem MenuItem_size_m' and  contains(text(), '967')]"))).click();
-        driver.findElement(By.xpath("/html/body/div[2]/div[2]/div[3]/div[2]/div/div[2]/div/div[3]/div[3]/div[3]/button")).click();
-        new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) driver -> !driver.findElement
-                (By.xpath("/html/body/div[2]/div[2]/div[3]/div[2]/div/div[2]/div/div[3]/div[3]/div[3]/button/span/span")).
-                getText().contains("Показать"));
-        new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) driver -> driver.findElement
-                (By.xpath("/html/body/div[2]/div[2]/div[3]/div[2]/div/div[2]/div/div[3]/div[3]/div[3]/button/span/span")).
-                getText().contains("Показать"));
+        try {
+            driver.findElement(By.xpath("/html/body/div[2]/div[2]/div[3]/div[2]/div/div[2]/div/div[3]/div[3]/div[3]/button")).click();
+            new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) driver -> !driver.findElement
+                    (By.xpath("/html/body/div[2]/div[2]/div[3]/div[2]/div/div[2]/div/div[3]/div[3]/div[3]/button/span/span")).
+                    getText().contains("Показать"));
+            new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) driver -> driver.findElement
+                    (By.xpath("/html/body/div[2]/div[2]/div[3]/div[2]/div/div[2]/div/div[3]/div[3]/div[3]/button/span/span")).
+                    getText().contains("Показать"));
+            driver.findElement((By.xpath("/html/body/div[2]/div[2]/div[3]/div[2]/div/div[2]/div/div[3]/div[3]/div[3]/button/span/span"))).click();
+        }
+        catch (org.openqa.selenium.TimeoutException a) { driver.findElement((By.xpath("/html/body/div[2]/div[2]/div[3]/div[2]/div/div[2]/div/div[3]/div[3]/div[3]/button/span/span"))).click();}
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated
                 (By.xpath("//*[@class= 'ListingItem-module__year']")));
-
+    }
+    public void setOldCar(){
+        driver.findElement(By.xpath("/html/body/div[2]/div[2]/div[3]/div[2]/div/div[2]/div/div[3]/div[1]/div[1]/span/label[3]/button/span/span")).click();
+        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//*[@class= 'ListingItemPrice-module__content']")));
     }
 
     public void getAutoRu(){
