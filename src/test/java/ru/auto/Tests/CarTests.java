@@ -21,30 +21,30 @@ public class CarTests {
     private static WebDriver driver;
     public static CarPage carPage;
     @BeforeAll
-    static void up() {
+    public static void up() {
         driver= TestConfiguration.initialize();
         carPage = new CarPage(driver);
     }
     @AfterAll
-    static void close() {
+    public static void close() {
       driver.quit();
     }
 
     @Test
-    void checkNumberTest(){
+    public void checkNumberTest(){
         carPage.getSellersNumber();
         String a= (new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(carPage.PHONE_XPATH)))).getText();
         assertEquals("+7 958 598-13-95",a);
     }
     @Test
-    void checkMapTest() {
+    public void checkMapTest() {
         List<WebElement> a = new ArrayList<>();
         carPage.getMap();
         a.add(new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(carPage.MAP_XPATH))));
         assertEquals(1, a.size());
     }
     @Test
-    void checkRatingTest(){
+    public void checkRatingTest(){
         List<WebElement> a = new ArrayList<>();
         carPage.getRating();
         a.add (new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(carPage.ADD_FEEDBACK_BUTTON_XPATH))));
@@ -52,7 +52,7 @@ public class CarTests {
 
     }
     @Test
-    void addFeedback(){
+    public void addFeedback(){
         List<WebElement> a = new ArrayList<>();
         carPage.addFeedback();
         a.add (new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(carPage.REVIEW_FORM_XPATH))));

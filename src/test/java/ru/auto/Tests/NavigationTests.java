@@ -32,63 +32,63 @@ public class NavigationTests {
         driver.manage().window().setSize(new Dimension(1920, 1080));
     }
     @AfterAll
-    static void close() {
+    public static void close() {
         driver.quit();
     }
 
     @Test
-    void changeCityTest(){
+    public void changeCityTest(){
         siteNavigation.changeCity();
         List<WebElement> a = new ArrayList<>();
         assertTrue(new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(siteNavigation.CITY_XPATH))).getText().contains("Москва"));
     }
 
     @Test
-    void navigateToSignUpPageTest() {
+    public void navigateToSignUpPageTest() {
         siteNavigation.navigateToSignUp();
         List<WebElement> list  = driver.findElements(By.xpath(siteNavigation.AUTH_FORM_XPATH));
         assertEquals(1, list.size());
 }
     @Test
-    void emailEnterSignUpPageTest() {
+    public void emailEnterSignUpPageTest() {
         siteNavigation.navigateToSignUp();
         signInPage.enterEmail();
         List<WebElement> list  = driver.findElements(By.xpath(siteNavigation.SIGN_IN_HEADER_XPATH));
         assertEquals(1, list.size());
     }
     @Test
-    void magazinePageTest() {
+    public void magazinePageTest() {
         siteNavigation.navigateToMagazine();
         List<WebElement> list  = driver.findElements(By.xpath(siteNavigation.MAGAZINE_LOGO_XPATH));
         assertEquals(1, list.size());
     }
     @Test
-    void carPageTest() {
+    public void carPageTest() {
         siteNavigation.navigateToCarPage();
         List<WebElement> list  = driver.findElements(By.xpath(siteNavigation.CARS_HEADER_XPATH));
         assertEquals(1, list.size());
     }
     @Test
-    void commercialCarPageTest() {
+    public void commercialCarPageTest() {
         siteNavigation.navigateToCommercialCars();
         List<WebElement> list  = driver.findElements(By.xpath(siteNavigation.COMMERCIAL_HEADER_XPATH));
         assertEquals(1, list.size());
     }
     @Test
-    void comparePageTest() {
+    public void comparePageTest() {
         siteNavigation.navigateToModelComparePage();
         List<WebElement> list  = driver.findElements(By.xpath(siteNavigation.COMPARE_HEADER_XPATH));
         assertEquals(1, list.size());
 
     }
     @Test
-    void feedbackPageTest() {
+    public void feedbackPageTest() {
         siteNavigation.navigateToFeedbackPage();
         List<WebElement> list  = driver.findElements(By.xpath(siteNavigation.CARS_FEEDBACK_HEADER));
         assertEquals(1, list.size());
     }
     @Test
-    void dropDownTest() {
+    public void dropDownTest() {
         siteNavigation.navigateToItemFromDropDownMenu();
         List<WebElement> list = driver.findElements(By.xpath(siteNavigation.DROP_DOWN_MENU_XPATH));
         assertEquals(1, list.size());

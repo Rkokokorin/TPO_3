@@ -21,7 +21,7 @@ public class  SignInTests {
     private static CarFilter carFilter;
     private static CarList carList;
     @BeforeAll
-    static void up() {
+    public static void up() {
         driver=TestConfiguration.initialize();
         actions = new Actions(driver);
         siteNavigation =new SiteNavigation(driver);
@@ -34,7 +34,7 @@ public class  SignInTests {
     }
 
     @AfterAll
-    static void close() {
+    public static void close() {
         driver.quit();
 
     }

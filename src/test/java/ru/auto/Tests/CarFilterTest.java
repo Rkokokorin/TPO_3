@@ -15,18 +15,18 @@ public class CarFilterTest {
     private static CarList carList;
     public static CarFilter carFilter;
     @BeforeAll
-    static void up() {
+    public static void up() {
         driver= TestConfiguration.initialize();
         carFilter = new CarFilter(driver);
         carList =new CarList(driver);
     }
     @AfterAll
-    static void close() {
+    public static void close() {
        driver.quit();
     }
 
     @Test
-    void firmTest() {
+    public void firmTest() {
         boolean flag =true;
         carFilter.getCarsByFirm("MINI");
         List<WebElement> foundCars = new LinkedList<>();
@@ -40,7 +40,7 @@ public class CarFilterTest {
     }
 
     @Test
-    void yearTest() throws InterruptedException {
+    public void yearTest() throws InterruptedException {
         List<WebElement> foundCars = new LinkedList<>();
         carFilter.getCarsByFirm("MINI");
         carFilter.setAgeFilter();
@@ -54,7 +54,7 @@ public class CarFilterTest {
     }
 
     @Test
-    void priceTest() {
+    public void priceTest() {
         List<WebElement> foundCars = new LinkedList<>();
         boolean a = true;
         carFilter.getCarsByFirm("MINI");
@@ -68,7 +68,7 @@ public class CarFilterTest {
         assertTrue(a);
         }
     @Test
-    void destinationTest() {
+    public void destinationTest() {
         List<WebElement> foundCars = new LinkedList<>();
         carFilter.getCarsByFirm("Audi");
         carFilter.setDestinationFilter();
@@ -82,8 +82,7 @@ public class CarFilterTest {
         assertTrue(a);
     }
     @Test
-    void
-    carcassTest() throws InterruptedException {
+    public void  carcassTest() throws InterruptedException {
         List<WebElement> foundCars = new LinkedList<>();
         carFilter.getCarsByFirm("Ford");
         carFilter.setCarcassFilter();
@@ -97,7 +96,7 @@ public class CarFilterTest {
         assertTrue(a);
     }
     @Test
-    void NotNewTest() {
+    public void NotNewTest() {
         List<WebElement> foundCars = new LinkedList<>();
         carFilter.getCarsByFirm("Audi");
         carFilter.setOldCar();
@@ -110,7 +109,7 @@ public class CarFilterTest {
         assertTrue(a);
     }
     @Test
-    void driveTest(){
+    public void driveTest(){
         List<WebElement> foundCars = new LinkedList<>();
         carFilter.getCarsByFirm("BMW");
         carFilter.setDriveFilter();
@@ -123,7 +122,7 @@ public class CarFilterTest {
         assertTrue(a);
     }
     @Test
-    void modelTest(){
+    public void modelTest(){
         List<WebElement> foundCars = new LinkedList<>();
         carFilter.setModelFilter();
         boolean a = true;
